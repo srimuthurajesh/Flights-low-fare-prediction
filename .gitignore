@@ -1,0 +1,5 @@
+csv_data/
+test/
+/fare_prediction.pkl
+/graph.csv
+*~
