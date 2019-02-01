@@ -72,11 +72,11 @@ df = df1[['requested_date',
 		  'base_fare'
 		  ]]
 
-"""
+
 #for airline code get_dummies
 newdf = pd.get_dummies(df.airline_code,prefix="aircode_")
 df=pd.concat([df, newdf],axis=1)
-df = df.drop(columns=['airline_code'])	"""	 
+df = df.drop(columns=['airline_code']) 
 
 #getting only indigo airline
 #df = df.loc[(df['airline_code']=='6E')]
@@ -84,5 +84,6 @@ df = df.drop(columns=['airline_code'])	"""
 print(df.head())
 print(df.dtypes)
 print(df.shape)
-df.to_pickle('/var/www/html/ML/flight_low_fare_prediction/fare_prediction.pkl')
+#df.to_pickle('/var/www/html/ML/flight_low_fare_prediction/fare_prediction.pkl')
+df.to_csv('/var/www/html/ML/flight_low_fare_prediction/fare_prediction.csv')
 

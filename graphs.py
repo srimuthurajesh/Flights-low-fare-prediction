@@ -21,10 +21,6 @@ X = df[['requested_date',
 #X = df.drop(columns=['base_fare'])		 
 y = df['base_fare'] 
 
-df['orgin-dest'] = df['origin_airport_code'] + ' ' + df['dest_airport_code'] 
-#print(pd.unique(df[['orgin-dest']].values.ravel('K')))
-df['days_to_depature'] = (df['departure_timestamp']-df['requested_timestamp']).dt.days
-
 df = df.loc[(df['airline_code']=='6E')&(df['orgin-dest']=='DEL BOM')&(df['departure_date']==24)&(df['departure_month']==1)&(df['departure_hour']==9)&(df['days_to_depature']==4)]
 #print(df['departure_hour'].value_counts())
 print(df.shape)
