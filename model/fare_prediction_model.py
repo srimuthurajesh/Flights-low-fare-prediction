@@ -3,10 +3,11 @@ import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 from sklearn import metrics
+import sys
 
-
-df = pd.read_pickle('/var/www/html/ML/flight_low_fare_prediction/fare_prediction.pkl')
-
+df = pd.read_pickle('./data/fare_prediction.pkl')
+print(df.columns)
+sys.exit()
 X = df[['requested_date',
 		  'requested_month',
 		  'requested_year',
@@ -36,14 +37,6 @@ X_train,X_test,y_train,y_test = train_test_split(X, y, test_size=0.4, random_sta
 linreg = LinearRegression()
 linreg.fit(X_train,y_train)
 y_pred = linreg.predict(X_test)
-#print(linreg.score(X_test, y_pred))
 print('Mean Absolute Error:', metrics.mean_absolute_error(y_test, y_pred))  
-print('Mean Squared Error:', metrics.mean_squared_error(y_test, y_pred))  
-print('Root Mean Squared Error:', np.sqrt(metrics.mean_squared_error(y_test, y_pred)))  
-y_pred = pd.DataFrame({'pred':y_pred.tolist()})
-#print(y_test.head(20))
-#print(y_pred.head(20))
-print(linreg.score(X_test,y_test))
-df1 = pd.concat([y_test,y_pred],axis=1)
-print(df1.head())
+print('score:',linreg.score(X_test,y_test))
 """
