@@ -35,9 +35,6 @@ X_train,X_test,y_train,y_test = train_test_split(X, y, test_size=0.4, random_sta
 linreg = LinearRegression()
 linreg.fit(X_train,y_train)
 y_pred = linreg.predict(X_test)
-print('Mean Absolute Error:', metrics.mean_absolute_error(y_test, y_pred))  
-print('Mean Squared Error:', metrics.mean_squared_error(y_test, y_pred))  
-print('Root Mean Squared Error:', np.sqrt(metrics.mean_squared_error(y_test, y_pred)))  
-print('R2_score:', (metrics.r2_score(y_test, y_pred)))
-print('Score:',linreg.score(X_test,y_test))
+print('Mean Absolute Error:', metrics.mean_absolute_error(y_test, y_pred)) 	# 35119461.09640596 
+print('Score:',linreg.score(X_test,y_test))		#-10610479489412.72
 
