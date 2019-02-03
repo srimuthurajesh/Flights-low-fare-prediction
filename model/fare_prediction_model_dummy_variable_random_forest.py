@@ -3,7 +3,7 @@ from sklearn.ensemble import RandomForestRegressor
 from sklearn.model_selection import train_test_split
 import sys
 from sklearn.metrics import mean_squared_error
-from sklearn.metrics import mean_absolute_error
+from sklearn.metrics import mean_absolute_error	
 import math
 
 pd.set_option('display.max_columns', None)

@@ -7,25 +7,27 @@ from sklearn import metrics
 
 df = pd.read_pickle('/var/www/html/ML/git_low_fare_prediction/data/corporate_converted_dummy_variable.pkl')
 
-
-df = df.drop(columns=['origin_airport_code',
+X = df.drop(columns=['origin_airport_code',
 					  'dest_airport_code',
 					  'pnr_date',
 					  'airline_code',
 					  'flight_no',
 					  'date_departure',
 					  'time_departure',
-					  'Cabin class',
-					  'Trip type',
-					  'Fare type',
+					  'cabin_class',
+					  'trip_type',
+					  'faretype',
+					  'fare_basis_code',
 					  'departure_timestamp',
 					  'orgin-dest',
+					  'request_date',
 					  'requested_timestamp',
-					  'days_to_depature',
+					  'days_to_departure',
 					  'origin_airport_code_label',
 					  'dest_airport_code_label',
-					  'airline_code_label'])		 
-X = df.drop(columns=['base_fare'])
+					  'airline_code_label',
+					  'base_fare'])	
+					  
 y = df['base_fare'] 
 
 #df = df.loc[(df['airline_code']=='6E')]

@@ -1,13 +1,13 @@
 import pandas as pd
 import datetime as dt
+import sys
+pd.set_option('display.max_columns', None)
+
 
 #reading csv file
 df_corporate = pd.read_csv('../csv_data/fp_corporate_data.csv')
 df_service = pd.read_csv('../csv_data/fp_service_data.csv')
-
-#df_corporate = df_corporate.head(5)
-#df_service = df_service.head(5)
-
+df_service.truncate()
 #remove last column which is unnamed
 df_corporate = df_corporate[df_corporate.columns[:-1]]
 
@@ -18,40 +18,39 @@ df_corporate['departure_timestamp'] = pd.to_datetime(df_corporate['date_departur
 df_service['pnr_date'] = pd.to_datetime(df_service.pnr_date).dt.date
 df_service['departure_timestamp'] = pd.to_datetime(df_service['date_departure'] + ' ' + df_service['time_departure'] )
 
-pd.set_option('display.max_columns', None)
-df1 = pd.concat([df_corporate,df_service],sort=False)
-df1 = df1.drop_duplicates(keep='first')
+df = pd.concat([df_corporate,df_service],sort=False)
+df = df.drop_duplicates(keep='first')
 
 #remove Nan values
-df1 = df1.dropna(how='all')
-
+df = df.dropna(how='all')
 
 #sort values
-df1 = df1.sort_values(['pnr_date'])
+df = df.sort_values(['pnr_date'])
 
 #orgin-dest pair
-df1['orgin-dest'] = df1['origin_airport_code'] + ' ' + df1['dest_airport_code'] 
+df['orgin-dest'] = df['origin_airport_code'] + ' ' + df['dest_airport_code'] 
 
 #assigning category values
-sectorCategoryList = pd.unique(df1[['origin_airport_code', 'dest_airport_code']].values.ravel('K'))
-df1['origin_airport_code_label'] = df1.origin_airport_code.astype('category', CategoricalDtype=sectorCategoryList).cat.codes
-df1['dest_airport_code_label'] = df1.dest_airport_code.astype('category', CategoricalDtype=sectorCategoryList).cat.codes
+sectorCategoryList = pd.unique(df[['origin_airport_code', 'dest_airport_code']].values.ravel('K'))
+df['origin_airport_code_label'] = df.origin_airport_code.astype('category', CategoricalDtype=sectorCategoryList).cat.codes
+df['dest_airport_code_label'] = df.dest_airport_code.astype('category', CategoricalDtype=sectorCategoryList).cat.codes
 
-departureDateTimePd = df1['departure_timestamp'] 
-df1['departure_date'], df1['departure_month'], df1['departure_year'] = departureDateTimePd.dt.day, departureDateTimePd.dt.month, departureDateTimePd.dt.year
-df1['departure_hour'], df1['departure_minute'] = departureDateTimePd.dt.hour, departureDateTimePd.dt.minute 
+departureDateTimePd = df['departure_timestamp'] 
+df['departure_date'], df['departure_month'], df['departure_year'] = departureDateTimePd.dt.day, departureDateTimePd.dt.month, departureDateTimePd.dt.year
+df['departure_hour'], df['departure_minute'] = departureDateTimePd.dt.hour, departureDateTimePd.dt.minute 
 
-df1['requested_timestamp'] = pnrDateTimeStamp = pd.to_datetime(df1.pnr_date)
-df1['requested_date'], df1['requested_month'], df1['requested_year'] = pnrDateTimeStamp.dt.day, pnrDateTimeStamp.dt.month, pnrDateTimeStamp.dt.year
+df['requested_timestamp'] = pnrDateTimeStamp = pd.to_datetime(df.pnr_date)
+df['requested_date'], df['requested_month'], df['requested_year'] = pnrDateTimeStamp.dt.day, pnrDateTimeStamp.dt.month, pnrDateTimeStamp.dt.year
 
 #days to departure
-df1['days_to_departure'] = (df1['departure_timestamp']-df1['requested_timestamp']).dt.days
+df['days_to_departure'] = (df['departure_timestamp']-df['requested_timestamp']).dt.days
 
 #category values for airline_code
-df1['airline_code_label'] = df1.airline_code.astype('category').cat.codes
+df['airline_code_label'] = df.airline_code.astype('category').cat.codes
 
 
-df = df1[['requested_date',
+"""
+df = df[['requested_date',
 		  'requested_month',
 		  'requested_year',
 		  'requested_timestamp',
@@ -72,20 +71,21 @@ df = df1[['requested_date',
 		  'departure_timestamp',
 		  'base_fare'
 		  ]]
+"""
 
-
-#for airline code get_dummies
-newdf = pd.get_dummies(df.airline_code,prefix="aircode_")
-df=pd.concat([df, newdf],axis=1)
 
 #removing outliers
 df = df.loc[(df['base_fare']>1000)&(df['base_fare']<10000)]
 
-#getting only indigo airline
-#df = df.loc[(df['airline_code']=='6E')]
+#To create dataframe without airline code bucketing
+df.to_pickle('../data/corporate_fare_prediction.pkl')
 
+"""
+#for airline code get_dummies
+newdf = pd.get_dummies(df.airline_code,prefix="aircode")
+df=pd.concat([df, newdf],axis=1)
+df.to_pickle('../data/corporate_fare_prediction_aircode.pkl')
+"""
 print(df.head())
 print(df.dtypes)
 print(df.shape)
-df.to_pickle('../data/fare_prediction.pkl')
-
