@@ -2,7 +2,7 @@ import pandas as pd
 from matplotlib import pyplot as plt
 
 
-df = pd.read_pickle('/var/www/html/python/fare_prediction.pkl')
+df = pd.read_pickle('./data/corporate_converted_dummy_variable.pkl')
 
 X = df[['requested_date',
 		  'requested_month',
@@ -25,7 +25,7 @@ df['days_to_depature'] = (df['departure_timestamp']-df['requested_timestamp']).d
 
 df = df.loc[(df['airline_code']=='6E')&(df['orgin-dest']=='DEL BOM')&(df['departure_date']==24)&(df['departure_month']==1)&(df['days_to_depature']==2)]
 print(df['days_to_depature'].value_counts())
-
+"""
 #print(df.shape)
 #df.to_csv('/var/www/html/ML/flight_low_fare_prediction/graph.csv')
 
@@ -36,3 +36,4 @@ print(df['requested_timestamp'])
 
 
 plt.show()
+"""

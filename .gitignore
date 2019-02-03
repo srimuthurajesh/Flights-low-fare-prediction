@@ -1,5 +1,6 @@
 csv_data/
 test/
+data/
 /fare_prediction.pkl
 /graph.csv
 *~
