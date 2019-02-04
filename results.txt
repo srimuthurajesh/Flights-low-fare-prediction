@@ -1,3 +1,9 @@
 CorporateDB, airline dummy, origin dummy, dest dummy, Normalizer, LinearRegression		#MAE:15505538.76414748  SCORE:-2067277349254.4893
 CorporateDB, airline dummy, origin dummy, dest dummy, LinearRegression					#MAE:35119461.09640596  SCORE:-10610479489412.72
 
+CorporateDB, no dummy, LinearRegression			#MAE:1504.6962136562636	 SCORE: 0.008385139620986637
+CorporateDB, airline dummy, LinearRegression	#MAE:85827374.42618504 	 SCORE: -396621564244124.0
+
+BothDB, no dummy, LinearRegression					#MAE:1555.7366092302323 	SCORE: 0.037622683295648995
+BothDB, airline dummy 	LinearRegression			#MAE:1539.5643475868835  	SCORE: 0.05630064478947449
+
