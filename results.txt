@@ -7,3 +7,4 @@ CorporateDB, airline dummy, LinearRegression	#MAE:85827374.42618504 	 SCORE: -39
 BothDB, no dummy, LinearRegression					#MAE:1555.7366092302323 	SCORE: 0.037622683295648995
 BothDB, airline dummy 	LinearRegression			#MAE:1539.5643475868835  	SCORE: 0.05630064478947449
 
+CorporateDB, airline dummy , origin dummy, dest dummy  , BayesianRidge #MAE : 2048.4035708761994  SCORE : 0.049469802487019376
