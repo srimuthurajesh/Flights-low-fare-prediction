@@ -31,3 +31,4 @@ CorporateDB, airline dummy, origin dummy, dest dummy, RandomForestRegresser(30) 
 
 CorporateDB, airline dummy , origin dummy, dest dummy  , BayesianRidge #MAE : 2048.4035708761994  SCORE : 0.049469802487019376
 
+CorporateDB, airline dummy , origin dummy, dest dummy  , BayesianRidge #MAE : 2048.4035708761994  SCORE : 0.049469802487019376
