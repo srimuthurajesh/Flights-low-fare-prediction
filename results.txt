@@ -1,9 +1,33 @@
 CorporateDB, airline dummy, origin dummy, dest dummy, Normalizer, LinearRegression		#MAE:15505538.76414748  SCORE:-2067277349254.4893
 CorporateDB, airline dummy, origin dummy, dest dummy, LinearRegression					#MAE:35119461.09640596  SCORE:-10610479489412.72
+CorporateDB, no dummy, LinearRegression													#MAE:1504.6962136562636	 SCORE: 0.008385139620986637
+CorporateDB, airline dummy, LinearRegression											#MAE:85827374.42618504 	 SCORE: -396621564244124.0
 
-CorporateDB, no dummy, LinearRegression			#MAE:1504.6962136562636	 SCORE: 0.008385139620986637
-CorporateDB, airline dummy, LinearRegression	#MAE:85827374.42618504 	 SCORE: -396621564244124.0
+BothDB, no dummy, LinearRegression									#MAE:1555.7366092302323 	SCORE: 0.037622683295648995
+BothDB, airline dummy 	LinearRegression							#MAE:1539.5643475868835  	SCORE: 0.05630064478947449
+BothDB, airline dummy, origin dummy, dest dummy, LinearRegression	#MAE:98688750.44380514	    SCORE: -215584844913062.44
 
-BothDB, no dummy, LinearRegression					#MAE:1555.7366092302323 	SCORE: 0.037622683295648995
-BothDB, airline dummy 	LinearRegression			#MAE:1539.5643475868835  	SCORE: 0.05630064478947449
+
+BothDB, airline dummy, origin dummy, dest dummy, RandomForestRegresser(70) 		Laptop Freeze
+BothDB, airline dummy, origin dummy, dest dummy, RandomForestRegresser(30) 		#MAE:927.9594656737177    	 SCORE: 0.5376391723856777
+BothDB, airline dummy, origin dummy, dest dummy, RandomForestRegresser() 		#MAE:956.9078594134133   	 SCORE: 0.5070126542226067
+BothDB, airline dummy, RandomForestRegresser(70) 								#MAE:0.002028488839881462    SCORE: 0.9999999997915757
+BothDB, airline dummy, RandomForestRegresser(70) 								#MAE:947.8022302985977    	 SCORE: 0.5254095148837581
+BothDB, airline dummy, RandomForestRegresser(50)								#MAE:950.2517442686751		 SCORE: 0.5226523022777118
+BothDB, airline dummy, RandomForestRegresser(30)								#MAE:956.6507126385673		 SCORE: 0.5160757089198418			
+BothDB, airline dummy, RandomForestRegresser()									#MAE:987.6259569239132		 SCORE: 0.4827612046066978	
+
+
+CorporateDB, airline dummy, RandomForestRegresser(70)									#MAE:916.0222466186178		 SCORE: 0.5387080483235189
+CorporateDB, airline dummy, RandomForestRegresser(50)									#MAE:919.7944728846172		 SCORE: 0.4920464823949112
+CorporateDB, airline dummy, RandomForestRegresser()										#MAE:964.3278625554428		 SCORE: 0.4920464823949112
+																		
+CorporateDB, airline dummy, origin dummy, dest dummy, RandomForestRegresser() 		#MAE:956.9078594134133		 SCORE: 0.5070126542226067
+CorporateDB, airline dummy, origin dummy, dest dummy, RandomForestRegresser(60) 	#MAE:919.4028963715605		 SCORE: 0.5376391723856777
+CorporateDB, airline dummy, origin dummy, dest dummy, RandomForestRegresser(50) 	#MAE:920.6529866852483		 SCORE: 0.5447171426271767
+CorporateDB, airline dummy, origin dummy, dest dummy, RandomForestRegresser(40) 	#MAE:922.9459886951786		 SCORE: 0.5424882638581754
+CorporateDB, airline dummy, origin dummy, dest dummy, RandomForestRegresser(30) 	#MAE:927.9594656737177		 SCORE: 0.5376391723856777
+
+
+CorporateDB, airline dummy , origin dummy, dest dummy  , BayesianRidge #MAE : 2048.4035708761994  SCORE : 0.049469802487019376
 

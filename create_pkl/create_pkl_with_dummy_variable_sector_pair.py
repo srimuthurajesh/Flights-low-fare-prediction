@@ -3,9 +3,9 @@ import sys
 
 pd.set_option('display.max_columns', None)
 
-df = pd.read_pickle('./data/balmer_fare_prediction.pkl')
+#df = pd.read_pickle('./data/balmer_fare_prediction.pkl')
 
-#df = pd.read_pickle('/var/www/html/ML/flight_low_fare_prediction/data/corporate_converted.pkl')
+df = pd.read_pickle('./data/corporate_converted.pkl')
 
 
 def getList(val):
@@ -33,6 +33,8 @@ df=pd.concat([df, aircodeDV],axis=1)
 df=pd.concat([df, originDV],axis=1)
 df=pd.concat([df, destDV],axis=1)
 
-#df.to_pickle('./data/corporate_converted_dummy_variable.pkl')
-df.to_pickle('./data/balmer_fare_prediction_dummy_variable.pkl')
+#sectorPair = pd.get_dummies(df.dest_airport_code,prefix="sector")
+#df=pd.concat([df, sectorPair],axis=1)
+
+df.to_pickle('./data/corporate_converted_dummy_variable_sector_pair.pkl')
 

@@ -7,33 +7,35 @@ from sklearn.preprocessing import Normalizer
 import sys
 
 
-df = pd.read_pickle('./data/corporate_converted_dummy_variable.pkl')
+df = pd.read_pickle('./data/fare_prediction_dummy_variable.pkl')
 
-df = df.drop(columns=['origin_airport_code',
+X = df.drop(columns=['origin_airport_code',
 					  'dest_airport_code',
 					  'pnr_date',
 					  'airline_code',
 					  'flight_no',
 					  'date_departure',
 					  'time_departure',
-					  'Cabin class',
-					  'Trip type',
-					  'Fare type',
+					  'cabin_class',
+					  'trip_type',
+					  'faretype',
+					  'fare_basis_code',
 					  'departure_timestamp',
 					  'orgin-dest',
+					  'request_date',
 					  'requested_timestamp',
-					  'days_to_depature',
+					  'days_to_departure',
 					  'origin_airport_code_label',
 					  'dest_airport_code_label',
-					  'airline_code_label'])		 
-X = df.drop(columns=['base_fare'])
+					  'airline_code_label',
+					  'base_fare'])	
 y = df['base_fare'] 
 nz = Normalizer()
 X = nz.fit(X).transform(X)
 
 #df = df.loc[(df['airline_code']=='6E')]
 
-X_train,X_test,y_train,y_test = train_test_split(X, y, test_size=0.4, random_state=4)
+X_train,X_test,y_train,y_test = train_test_split(X, y, test_size=0.2, random_state=4)
 
 #---------------------------------------------------------LINEAR REGRESSION------------------------------------------------------------------------
 

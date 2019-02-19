@@ -8,8 +8,8 @@ pd.set_option('display.max_columns', None)
 #df_corporate = pd.read_csv('../csv_data/fp_corporate_data.csv')
 #df_service = pd.read_csv('../csv_data/fp_service_data.csv')
 
-df_corporate = pd.read_csv('/var/www/html/ML/flight_low_fare_prediction/csv_data/fp_corporate_data.csv')
-df_service = pd.read_csv('/var/www/html/ML/flight_low_fare_prediction/csv_data/fp_service_data.csv')
+df_corporate = pd.read_csv('./csv_data/balmer.csv')
+df_service = pd.read_csv('./csv_data/fp_service_data.csv')
 
 #emptying service dataframe
 df_service = df_service.head(0) 
@@ -82,18 +82,20 @@ df = df[['requested_date',
 
 #removing outliers
 df = df.loc[(df['base_fare']>1000)&(df['base_fare']<10000)]
-"""
-#To create dataframe without airline code bucketing
-#df.to_pickle('../data/corporate_fare_prediction.pkl')
-df.to_pickle('/var/www/html/ML/flight_low_fare_prediction/data/corporate_fare_prediction.pkl')
-"""
 
+#To create dataframe without airline code bucketing
+df.to_pickle('./data/corporate_converted.pkl')
+#df.to_pickle('./data/balmer_fare_prediction.pkl')
+#df.to_pickle('../data/corporate_fare_prediction.pkl')
+#df.to_pickle('/var/www/html/ML/flight_low_fare_prediction/data/corporate_fare_prediction.pkl')
+
+"""
 #for airline code get_dummies
 newdf = pd.get_dummies(df.airline_code,prefix="aircode")
 df=pd.concat([df, newdf],axis=1)
 #df.to_pickle('../data/corporate_fare_prediction_aircode.pkl')
 df.to_pickle('/var/www/html/ML/flight_low_fare_prediction/data/corporate_fare_prediction_aircode.pkl')
-
+"""
 print(df.head())
 print(df.dtypes)
 print(df.shape)

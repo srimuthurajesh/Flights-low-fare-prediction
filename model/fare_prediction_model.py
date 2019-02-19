@@ -7,7 +7,7 @@ from sklearn import metrics
 import sys
 pd.set_option('display.max_columns', None)
 
-df = pd.read_pickle('/var/www/html/ML/flight_low_fare_prediction/data/fare_prediction_aircode.pkl')
+df = pd.read_pickle('./data/fare_prediction_aircode.pkl')
 df = df.drop(columns=['airline_code_label'])
 #df = pd.read_pickle('../data/fare_prediction.pkl')
 					  
